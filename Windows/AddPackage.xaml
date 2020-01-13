@@ -1,0 +1,83 @@
+﻿<Window x:Class="RepoToolbox.Windows.AddPackage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RepoToolbox.Windows"
+        mc:Ignorable="d"
+        Title="RP - Add Package" Height="641" Width="650" ResizeMode="CanMinimize"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- control fields -->
+        <TextBox x:Name="tbPackageID" materialDesign:HintAssist.HelperText="Example: de.saadatbaig.wpkgSample" materialDesign:HintAssist.Hint="Package Identifier"  HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="tbName" materialDesign:HintAssist.HelperText="Example: wpkg Sample" materialDesign:HintAssist.Hint="Name"  HorizontalAlignment="Left" Height="30" Margin="10,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="tbDepends" materialDesign:HintAssist.HelperText="Example: mobilesubstrate" materialDesign:HintAssist.Hint="Depends" Height="30" Margin="334,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbMaintainer" materialDesign:HintAssist.HelperText="The Maintainer's name" materialDesign:HintAssist.Hint="Maintainer" HorizontalAlignment="Left" Height="30" Margin="10,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="tbAuthor" materialDesign:HintAssist.HelperText="Package's Author/ Developer" materialDesign:HintAssist.Hint="Author" Height="30" Margin="334,110,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbVersion" materialDesign:HintAssist.HelperText="Example: 1.0 | Example2: 1.0-alpha1" materialDesign:HintAssist.Hint="Package Version" HorizontalAlignment="Left" Height="30" Margin="10,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="tbConflicts" materialDesign:HintAssist.HelperText="Example: com.saadatbaig.ConflictingPackage" materialDesign:HintAssist.Hint="Conflicts" Height="30" Margin="334,60,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbMinOS" materialDesign:HintAssist.HelperText="Example: 10.0" materialDesign:HintAssist.Hint="Lowest supported iOS Version" HorizontalAlignment="Left" Height="30" Margin="10,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="tbMaxOS" materialDesign:HintAssist.HelperText="Example: 13.3" materialDesign:HintAssist.Hint="Highest supported iOS Version" HorizontalAlignment="Left" Height="30" Margin="334,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBox x:Name="tbDesc" materialDesign:HintAssist.HelperText="Example: An awesome MobileSubstrate Tweak!" materialDesign:HintAssist.Hint="A short Package Description" Height="30" Margin="10,260,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbSection" materialDesign:HintAssist.HelperText="Select which Section the Package belongs to" Margin="334,160,10,0" VerticalAlignment="Top" Height="30">
+            <ComboBoxItem>Addons</ComboBoxItem>
+            <ComboBoxItem>Apps</ComboBoxItem>
+            <ComboBoxItem>System</ComboBoxItem>
+            <ComboBoxItem>Themes</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Tweaks</ComboBoxItem>
+            <ComboBoxItem>Utilities</ComboBoxItem>
+        </ComboBox>
+
+        <!-- Depiction & co. -->
+        <materialDesign:Card UniformCornerRadius="10" Cursor="Hand" Margin="10,315,0,0" MouseLeftButtonDown="DebfilePicker" Height="55" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300">
+            <TextBlock x:Name="mdc_tb_DebfileName" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                Select .deb File
+            </TextBlock>
+        </materialDesign:Card>
+        <materialDesign:Card UniformCornerRadius="10" Cursor="Hand" Margin="334,315,10,0" MouseLeftButtonDown="ScreenshotPicker" Height="55" VerticalAlignment="Top">
+            <TextBlock x:Name="mdc_tb_Screenshots" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                Select Screenshots
+            </TextBlock>
+        </materialDesign:Card>
+        <materialDesign:Card UniformCornerRadius="10" Cursor="Hand" Margin="334,390,10,0" MouseLeftButtonDown="IconPicker" Height="55" VerticalAlignment="Top">
+            <TextBlock x:Name="mdc_tb_Icon" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                Select Icon
+            </TextBlock>
+        </materialDesign:Card>
+        <materialDesign:Card UniformCornerRadius="10" Cursor="Hand" Margin="334,465,10,0" MouseLeftButtonDown="BannerPicker" Height="55" VerticalAlignment="Top">
+            <TextBlock x:Name="mdc_tb_Banner" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                Select Banner
+            </TextBlock>
+        </materialDesign:Card>
+        <materialDesign:Card UniformCornerRadius="10" Cursor="Hand" Margin="10,390,0,0" MouseLeftButtonDown="OpenDepictionEditor" Height="55" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300">
+            <TextBlock x:Name="mdc_tb_Depiction" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                Set/ Edit Depiction
+            </TextBlock>
+        </materialDesign:Card>
+        <materialDesign:Card UniformCornerRadius="10" Cursor="Hand" Margin="10,465,0,0" MouseLeftButtonDown="OpenChangelogEditor" Height="55" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300">
+            <TextBlock x:Name="mdc_tb_Changelog" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                Set initial Changelog
+            </TextBlock>
+        </materialDesign:Card>
+        <materialDesign:Card UniformCornerRadius="10" Cursor="Hand" Margin="10,0,10,15" MouseLeftButtonDown="UpdatePackages" Height="55" VerticalAlignment="Bottom">
+            <TextBlock x:Name="tbAPProgress" Style="{DynamicResource MaterialDesignCaptionTextBlock}" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                Add Package to Repo
+            </TextBlock>
+        </materialDesign:Card>
+
+    </Grid>
+</Window>
