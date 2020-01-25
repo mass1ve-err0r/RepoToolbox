@@ -16,9 +16,10 @@ namespace RepoToolbox.Windows
     /// </summary>
     public partial class DeletePackage : Window
     {
-
-        private static string PackagesFile = Environment.CurrentDirectory + "\\RepoFolder\\Packages";
         private static string REPO_FOLDER = Environment.CurrentDirectory + "\\RepoFolder";
+        private static string PackagesFile = REPO_FOLDER + "\\Packages";
+        private static string PR_FOLDER = Environment.CurrentDirectory + "\\_internals\\packages_record";
+
         public DeletePackage() {
             InitializeComponent();
         }
@@ -62,7 +63,7 @@ namespace RepoToolbox.Windows
             sr.Close();
             string pkgstr = sb.ToString();
             string outstr = Regex.Replace(pkgstr, @"\n\n\n", "\n\n");
-            File.WriteAllText(REPO_FOLDER + "\\Packages", outstr);
+            File.WriteAllText(PackagesFile, outstr);
             CommonFunctions.GenerateBZ2();
         }
 
@@ -87,7 +88,13 @@ namespace RepoToolbox.Windows
                         File.Delete(assets[i]);
                     }
                 }
-                //
+                // PackageRecord
+                String[] precord = Directory.GetFiles(PR_FOLDER);
+                for (int i = 0; i < precord.Length; i++) {
+                    if (Path.GetFileNameWithoutExtension(precord[i]).Equals(pid)) {
+                        File.Delete(precord[i]);
+                    }
+                }
             } catch (IOException e) {
                 DialogBox.Show("Error", "An error occured during deletion, please check the respective directories yourself", "Alright");
             }
