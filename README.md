@@ -1,6 +1,12 @@
-# RepoToolbox
+# RepoToolbox (WIP!)
 A static (iOS) APT repository management tool
 
+## Update 10.02.2020:
+As of now this is open-sourced as WIP because I no longer have time to work on this project (others have taken priority)
+
+The it compiles and works fine, however package deletion is somewhat faulty. Anyone who'd like to work on this is free todo so, please do give credit!
+
+I apologize if anyone has waited for this release, I hope you understand. For questions around this (serious ones), feel free to hit me up on Twitter @saadat603 :-)
 ## Introduction
 If you own an iOS repo, you probably know how tedious it can get from writing depictions to proper management of packages.
 There is no lack of templates, however I would also like to contribute to the community so here's _RepoToolbox:_
